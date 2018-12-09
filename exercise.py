@@ -1,27 +1,27 @@
 # -*- coding: utf-8 -*-
-import feedparser
+#import feedparser
 import getpass
 import requests
 
-print("**********\nLogin Panel\n**********\n")
 
 sys_user = "root"
 
 sys_pass  = "fl1sh"
 
-username = input("Username: ")
-
-passwd =  getpass.getpass("Pass: ")
-#getpass hides pass.
-
-if (username != sys_user and passwd == sys_pass):
-	print("Wrong Username...")
-elif (username == sys_user and passwd!= sys_pass):
-	print("Wrong Password...")
-elif (username != sys_user and passwd != sys_pass):
-	print("Wrong Username and Password...")
-
-else:
+def login():
+	username = input("Username: ")
+	passwd =  getpass.getpass("Pass: ")
+	#getpass hides pass.
+	if (username != sys_user and passwd == sys_pass):
+		print("Wrong Username...")
+	elif (username == sys_user and passwd!= sys_pass):
+		print("Wrong Password...")
+	elif (username != sys_user and passwd != sys_pass):
+		print("Wrong Username and Password...")
+	else:
+		menu()
+		
+def menu():
 	print("**********\nMenu\n1-News\n2-Weather\n3-Currency\nq-Exit\n**********\n")
 	operation = input("Select : ")
 	if (operation == '1'):
@@ -39,3 +39,8 @@ else:
 		print("1 Turkish Liras.")
 		currency = requests.get('https://api.exchangeratesapi.io/latest?base=TRY', headers={'user agent' : 'curl'})
 		print(currency.text)
+
+print("**********\nLogin Panel\n**********\n")
+
+while True:
+	login()
