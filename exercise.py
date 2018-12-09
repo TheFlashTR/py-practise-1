@@ -1,25 +1,29 @@
 # -*- coding: utf-8 -*-
-import feedparser
+#import feedparser
 import getpass
 import requests
 
+accounts = []
 
-sys_user = "root"
-
-sys_pass  = "fl1sh"
-
+def register():
+	print("Register")
+	username = input("Username: ")
+	if username in accounts:
+		print(username,"already registered")
+		accounts.append(username)
+	else:
+		passwd =  getpass.getpass("Pass: ")
+		accounts.append(passwd)
+		return accounts
+		
 def login():
 	username = input("Username: ")
 	passwd =  getpass.getpass("Pass: ")
 	#getpass hides pass.
-	if (username != sys_user and passwd == sys_pass):
-		print("Wrong Username...")
-	elif (username == sys_user and passwd!= sys_pass):
-		print("Wrong Password...")
-	elif (username != sys_user and passwd != sys_pass):
-		print("Wrong Username and Password...")
+	if (username and passwd in accounts):
+	    menu()
 	else:
-		menu()
+		print("Wrong Credentials")
 
 def logout():
     print("Log outed...")
@@ -36,7 +40,7 @@ def menu():
 		logout()
 	elif (operation == '2'):
 		city = input('Pls Enter City Name: ')
-		weather = requests.get('https://wttr.in/{}'.format(city+'?lang=tr'), headers={'user agent' : 'curl'})
+		weather = requests.get('https://wttr.in/{}'.format(city+'?lang=en'), headers={'user agent' : 'curl'})
 		print(weather.text)
 		
 	elif (operation == '3'):
@@ -46,7 +50,12 @@ def menu():
 	else:
 	    print("Wrong")
 
-print("**********\nLogin Panel\n**********\n")
-
 while True:
-	login()
+	print("""**********\nFl1sh's Panel\n1-Login\n2-Register\n**********\n""")
+	stat = input("Select:")
+	if (stat == '1'):
+		login()
+	if (stat == '2'):
+		register()
+	else:
+		print("Wrong Credentials")
