@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#import feedparser
+import feedparser
 import getpass
 import requests
 
@@ -20,6 +20,10 @@ def login():
 		print("Wrong Username and Password...")
 	else:
 		menu()
+
+def logout():
+    print("Log outed...")
+    return
 		
 def menu():
 	print("**********\nMenu\n1-News\n2-Weather\n3-Currency\nq-Exit\n**********\n")
@@ -29,7 +33,7 @@ def menu():
 	  for post in haber.entries:
 	  	print(post.title)
 	elif (operation == 'q'):
-		print("Exited...")
+		logout()
 	elif (operation == '2'):
 		city = input('Pls Enter City Name: ')
 		weather = requests.get('https://wttr.in/{}'.format(city+'?lang=tr'), headers={'user agent' : 'curl'})
@@ -39,6 +43,8 @@ def menu():
 		print("1 Turkish Liras.")
 		currency = requests.get('https://api.exchangeratesapi.io/latest?base=TRY', headers={'user agent' : 'curl'})
 		print(currency.text)
+	else:
+	    print("Wrong")
 
 print("**********\nLogin Panel\n**********\n")
 
