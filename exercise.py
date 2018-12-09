@@ -48,7 +48,7 @@ def menu():
 		currency = requests.get('https://api.exchangeratesapi.io/latest?base=TRY', headers={'user agent' : 'curl'})
 		print(currency.text)
 	else:
-	    print("Wrong")
+	    print("Wrong Choice")
 
 while True:
 	print("""**********\nFl1sh's Panel\n1-Login\n2-Register\n**********\n""")
