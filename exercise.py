@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#import feedparser
+import feedparser
 import getpass
 import requests
 
