@@ -61,5 +61,7 @@ while True:
 	stat = input("Select:")
 	if (stat == '1'):
 		login()
-	if (stat == '2'):
+	elif (stat == '2'):
 		register()
+	else:
+		print("Try Again.")
